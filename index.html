@@ -380,7 +380,7 @@ function render() {
           <span class="track-idx">${i+1}</span>
           <div class="track-name" title="${esc}">${name}</div>
           <div class="track-audio"><audio controls preload="none" src="${getAudioSrc(t.path)}"></audio></div>
-          <button class="track-dl" onclick="dlFile(${JSON.stringify(t.path)},${JSON.stringify(t.file)})" title="下載">⬇</button>
+          <button class="track-dl" data-p="${t.path.replace(/"/g,'&quot;')}" data-f="${t.file.replace(/"/g,'&quot;')}" onclick="dlFile(this.dataset.p,this.dataset.f)" title="下載">⬇</button>
         </div>`;
       });
     });
