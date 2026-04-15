@@ -242,8 +242,8 @@ function classifyKIE(f, folder) {
   if (/brake|ratchet|mechanical|\broll\b|\bglide\b/.test(n)) return '機械音效';
   if (/\bthud\b|impact|clash|explosive/.test(n))      return '撞擊音效';
   if (/circuit|engine\b|cyber|clockwork|skyfire|skyforge|celestial|wealth|synth|electronic/.test(n)) return '電子科技';
-  if (/\bcoin\b/.test(n))                                                                             return '硬幣音效';
-  if (/\bangel\b/.test(n))                                                                            return '人聲音效';
+  if (/^coin[_-]|_coin[_-]|_coin$/.test(n))                                                           return '硬幣音效';
+  if (/^angel[_-]|_angel[_-]|_angel$/.test(n))                                                        return '人聲音效';
   if (/^ace_|^jack_|^king_|^queen_/.test(n))                                                         return '遊戲介面';
   return '冒險奇幻';
 }
