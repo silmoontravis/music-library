@@ -78,8 +78,8 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0d0d11; colo
 .track.p4 .track-name { color: #d0b8ff; }
 .track-audio { flex: 1; min-width: 0; }
 .track-audio audio { width: 100%; height: 28px; filter: invert(1) hue-rotate(180deg) brightness(0.72) saturate(0.5); }
-.track-dl { flex-shrink: 0; margin-left: 8px; color: #3a3a5a; text-decoration: none; font-size: 14px; padding: 4px 6px; border-radius: 4px; transition: all .12s; line-height: 1; }
-.track-dl:hover { color: #9098ff; background: #9098ff18; }
+.track-dl { flex-shrink: 0; margin-right: 10px; background: #1e1e30; border: 1px solid #2a2a44; color: #7078cc; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 5px; cursor: pointer; transition: all .15s; letter-spacing: 0.03em; white-space: nowrap; }
+.track-dl:hover { background: #9098ff; border-color: #9098ff; color: #fff; }
 
 .empty-state { padding: 60px 20px; text-align: center; color: #444; font-size: 14px; }
 .hidden { display: none !important; }
@@ -379,8 +379,8 @@ function render() {
         html += `<div class="track" data-pc="p${si}" data-src="${src}" data-name="${esc}">
           <span class="track-idx">${i+1}</span>
           <div class="track-name" title="${esc}">${name}</div>
+          <button class="track-dl" data-p="${t.path.replace(/"/g,'&quot;')}" data-f="${t.file.replace(/"/g,'&quot;')}" onclick="dlFile(this.dataset.p,this.dataset.f)">↓ 下載</button>
           <div class="track-audio"><audio controls preload="none" src="${getAudioSrc(t.path)}"></audio></div>
-          <button class="track-dl" data-p="${t.path.replace(/"/g,'&quot;')}" data-f="${t.file.replace(/"/g,'&quot;')}" onclick="dlFile(this.dataset.p,this.dataset.f)" title="下載">⬇</button>
         </div>`;
       });
     });
@@ -879,7 +879,7 @@ const DRIVE_IDS = {
   "sfx/symb_littlepayout.mp3": "1ynjkKGNlQ9yYOsZx-TFOXhWbjFxDFjMR",
 };
 
-function getAudioSrc(p){const id=DRIVE_IDS[p];return id?`https://drive.google.com/uc?export=view&id=${id}`:p;}
+function getAudioSrc(p){const id=DRIVE_IDS[p];return id?`https://drive.usercontent.google.com/download?id=${id}&export=download&authuser=0`:p;}
 function getDlUrl(p){const id=DRIVE_IDS[p];return id?`https://drive.usercontent.google.com/download?id=${id}&export=download&authuser=0`:p;}
 async function dlFile(path, filename) {
   const url = getDlUrl(path);
