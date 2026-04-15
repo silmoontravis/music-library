@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Audio Test</title></head>
+<body style="background:#111;color:#fff;padding:40px;font-family:sans-serif">
+<h2>Drive Audio Test</h2>
+<p>File: original/seth/bgm_mg.mp3</p>
+
+<p>1. usercontent (no params):</p>
+<audio controls src="https://drive.usercontent.google.com/download?id=1nfAK1Rb5F2IrWHz-qhpAZ6j0pFyV8HBr"></audio>
+
+<p>2. usercontent + export=download:</p>
+<audio controls src="https://drive.usercontent.google.com/download?id=1nfAK1Rb5F2IrWHz-qhpAZ6j0pFyV8HBr&export=download"></audio>
+
+<p>3. drive.google.com/uc export=view:</p>
+<audio controls src="https://drive.google.com/uc?export=view&id=1nfAK1Rb5F2IrWHz-qhpAZ6j0pFyV8HBr"></audio>
+
+<p id="log" style="color:#aaa;margin-top:20px"></p>
+<script>
+document.querySelectorAll('audio').forEach((a,i)=>{
+  a.addEventListener('canplay',()=>log(`#${i+1} canplay ✓`));
+  a.addEventListener('error',e=>log(`#${i+1} error: ${a.error?.message||e.type} (code=${a.error?.code})`));
+  a.load();
+});
+function log(s){document.getElementById('log').innerHTML+=s+'<br>';}
+</script>
+</body>
+</html>
