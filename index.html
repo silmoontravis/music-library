@@ -879,8 +879,9 @@ const DRIVE_IDS = {
   "sfx/symb_littlepayout.mp3": "1ynjkKGNlQ9yYOsZx-TFOXhWbjFxDFjMR",
 };
 
-function getAudioSrc(p){const id=DRIVE_IDS[p];return id?`https://drive.usercontent.google.com/download?id=${id}&export=download&authuser=0`:p;}
-function getDlUrl(p){const id=DRIVE_IDS[p];return id?`https://drive.usercontent.google.com/download?id=${id}&export=download&authuser=0`:p;}
+const GCS = "https://storage.googleapis.com/maki-music-lib/";
+function getAudioSrc(p){ return GCS + p.split('/').map(encodeURIComponent).join('/'); }
+function getDlUrl(p){ return GCS + p.split('/').map(encodeURIComponent).join('/'); }
 async function dlFile(path, filename) {
   const url = getDlUrl(path);
   try {
